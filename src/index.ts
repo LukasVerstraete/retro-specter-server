@@ -6,6 +6,8 @@ const app = express();
 const http: httpServer.Server = httpServer.createServer(app);
 const io: ioServer.Server = ioServer(http);
 
+const PORT = process.env.PORT || 8080;
+
 app.get('/', (req: any, res: any) => {
     res.send('<h1>Hello Worldo</h1>');
 });
@@ -17,6 +19,6 @@ io.on('connection', (socket) => {
     })
 });
 
-http.listen(5000, () => {
-    console.log('listening on *:5000');
+http.listen(PORT, () => {
+    console.log(`listening on *:${PORT}`);
 });
