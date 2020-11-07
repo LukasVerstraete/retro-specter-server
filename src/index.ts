@@ -16,6 +16,7 @@ const world: World = {players: []};
 io.on('connection', (socket: ioServer.Socket) => {
     console.log('a user connected');
     socket.on('disconnect', () => {
+        io
         OnDisconnect(socket);
     });
     registerAction('JOIN', socket, AddPlayer);
@@ -69,4 +70,5 @@ function ChangePlayerDirection(socket: ioServer.Socket, data: any): void {
 
 function OnDisconnect(socket: ioServer.Socket): void {
     world.players = world.players.filter((player: Player) => player.id !== socket.id);
+    socket.broadcast.emit('DISCONNECTED', { id: socket.id })
 }
