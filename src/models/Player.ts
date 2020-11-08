@@ -6,4 +6,7 @@ export interface Player {
     directionX: number;
     directionY: number;
     isCurrent?: boolean;
+    textureIndex: number;
+    dbId: string;
+    isActive: boolean;
 }
